@@ -2,11 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = document.getElementById("linksList");
     const dashboardButton = document.getElementById("openDashboard");
 
-    // Retrieve links from storage and display them
     chrome.storage.local.get("links", (data) => {
         if (data.links && data.links.length > 0) {
             list.innerHTML = "";
-            data.links.slice(-5).forEach(link => { // Show last 5 links
+            data.links.slice(-5).forEach(link => {
                 const li = document.createElement("li");
                 const a = document.createElement("a");
                 a.href = link;
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Open dashboard when button is clicked
     dashboardButton.addEventListener("click", () => {
         chrome.tabs.create({ url: "dashboard.html" });
     });
