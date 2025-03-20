@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get("links", (data) => {
         if (data.links && data.links.length > 0) {
             list.innerHTML = "";
-            data.links.forEach(link => {
+            data.links.slice(-5).forEach(link => { // Show last 5 links
                 const li = document.createElement("li");
                 const a = document.createElement("a");
                 a.href = link;
@@ -24,4 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     dashboardButton.addEventListener("click", () => {
         chrome.tabs.create({ url: "dashboard.html" });
     });
+    document.getElementById("clearLinks").addEventListener("click", () => {
+        chrome.storage.local.set({ links: [] }, () => {
+            document.getElementById("linksList").innerHTML = "<li>No links found</li>";
+        });
+    });
+    
 });
