@@ -9,8 +9,8 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS
 
 # API Keys (Replace with your actual keys)
-URLSCAN_API_KEY = "0195cbf3-8af6-7000-828a-de4e82ad6840"
-GEMINI_API_KEY = "AIzaSyDrhYeijlm8U_jBbd3FmGfos1JCzvhfEvs"
+URLSCAN_API_KEY = "YOUR_URLSCAN_API_KEY"
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
 
 @app.route('/scan-url', methods=['POST'])
 def scan_url():
