@@ -335,14 +335,29 @@ h1::before {
     height: 50px;
     overflow-y: auto;
 }
-
-.action-btn{
-    color: #0078d7;
-    background: none;
+.action-btn {
+    background-color: #007bff; /* Primary blue */
+    color: #fff; /* White text */
+    padding: 8px 16px; /* Smaller padding */
+    font-size: 14px; /* Slightly smaller font */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove default border */
+    border-radius: 20px; /* Fully rounded edges */
+    cursor: pointer; /* Indicate interactivity */
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 .action-btn a{
     text-decoration: none;
-    color: #0078d7;
-    background: none;
+    color: #fff;
+}
+
+.action-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+}
+
+.action-btn:active {
+    transform: scale(0.97); /* Slight press effect */
 }

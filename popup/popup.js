@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
             safeBrowsingTest(links)
               .then(mapping => {
                 linkStatusMapping = mapping;
+                updateExtensionIcon(); // Call function to update the icon
+
               })
               .catch(error => {
                 console.error("Safe Browsing API error:", error);
@@ -120,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Test links with Google Safe Browsing API.
     function safeBrowsingTest(links) {
         return new Promise((resolve, reject) => {
-            const API_KEY = "AIzaSyD6a02ERpTXyrKUzF31u0uEhSJgZXq5qu8"; // API key.
+            const API_KEY = "YOUR_GOOGLE_SAFE_API_KEY"; // API key.
             const apiEndpoint = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`;
   
             const requestBody = {
@@ -169,6 +171,23 @@ document.addEventListener('DOMContentLoaded', function() {
               });
         });
     }
+    function updateExtensionIcon() {
+        const iconElement = document.getElementById("icon");
+        let hasMalicious = false;
+        
+        Object.values(linkStatusMapping).forEach(status => {
+            if (status === "malicious") {
+                hasMalicious = true;
+            }
+        });
+    
+        if (hasMalicious) {
+            iconElement.src = "../img/icon unsafe.png"; // Change to unsafe icon
+        } else {
+            iconElement.src = "../img/icon.png"; // Default safe icon
+        }
+    }
+    
   
     // Group links by their domain (protocol + hostname).
     function groupLinksByDomain(links) {
@@ -301,7 +320,7 @@ async function getVirusTotalThreatScore(url) {
       }
     });
     if (!response.ok) {
-      console.error(`VirusTotal API error for ${url}: ${response.statusText}`);
+      console.error(`API error for ${url}: ${response.statusText}`);
       return { maliciousCount: 0 };
     }
     const data = await response.json();
@@ -310,7 +329,7 @@ async function getVirusTotalThreatScore(url) {
     const maliciousCount = stats ? stats.malicious : 0;
     return { maliciousCount };
   } catch (error) {
-    console.error("Error in VirusTotal API for", url, error);
+    console.error("Error in API for", url, error);
     return { maliciousCount: 0 };
   }
 }
