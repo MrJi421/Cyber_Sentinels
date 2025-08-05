@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * Returns an object with a property "maliciousCount" indicating the number of detections.
  */
 async function getVirusTotalThreatScore(url) {
-  const API_KEY = "eb7ec2c121e8294fae83f9b62a5428ac440da6c21e17e3dd50f27d5961db6c4f"; // Replace with your VirusTotal API key.
+  const API_KEY = "API_KEY"; // Replace with your VirusTotal API key.
   
   // Base64 encode the URL and remove any trailing '=' characters.
   const urlId = btoa(url).replace(/=+$/, '');
